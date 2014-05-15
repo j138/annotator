@@ -1,0 +1,19 @@
+{
+  "name": "annotator",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "< 2.0.0"
+  },
+  "exportsOverride": {
+    "jquery": {
+      "js": "jquery.min.js"
+    }
+  }
+}
