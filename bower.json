@@ -13,7 +13,7 @@
   },
   "exportsOverride": {
     "jquery": {
-      "js": "jquery.min.js"
+      "js": "public/js/jquery.min.js"
     }
   }
 }
