@@ -1,19 +1,48 @@
 {
   "name": "annotator",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "main": "index.js",
+  "keywords": [
+    "bower",
+    "jquery",
+    "underscore",
+    "gumby"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
+    "components",
     "bower_components",
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "jquery": "< 2.0.0"
-  },
+  "devDependencies": {},
   "exportsOverride": {
     "jquery": {
-      "js": "public/js/jquery.min.js"
+      "js": "**/*.js",
+      "css": "**/*.css"
+    },
+    "underscore": {
+      "js": "**/*.js"
+    },
+    "gumby": {
+      "css": "**/*.css",
+      "js": "**/*.js",
+      "img": [
+        "**/*.jpg",
+        "**/*.png",
+        "**/*.gif"
+      ],
+      "font": [
+        "**/*.eot",
+        "**/*.ttf",
+        "**/*.woff"
+      ]
     }
+  },
+  "dependencies": {
+    "jquery": "1.11.1",
+    "underscore": "~1.6.0",
+    "gumby": "~2.6.3"
   }
 }
