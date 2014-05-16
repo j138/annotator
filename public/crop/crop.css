@@ -1,0 +1,53 @@
+body {
+    background-color: #EEEEEE;
+}
+
+.canvas {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+    /* background-color: #CCCCCC; */
+}
+
+/* 動的にwidth, heightを変える必要がある */
+.target-img {
+    display: block;
+    visibility: visible;
+    width: 273px;
+    height: 300px;
+    border: medium none;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.8;
+}
+.crop-holder {
+    position: relative;
+}
+.crop-wrapper {
+    position: absolute;
+}
+.crop-vline, .crop-hline {
+    background: url("crop.gif") repeat scroll 0 0 #FFFFFF;
+    font-size: 0;
+    position: absolute;
+    opacity: 0.4;
+}
+.crop-vline {
+    height: 100%;
+    width: 1px !important;
+}
+.crop-vline.right {
+    right: 0;
+}
+.crop-hline {
+    height: 1px !important;
+    width: 100%;
+}
+.crop-hline.bottom {
+    bottom: 0;
+}
