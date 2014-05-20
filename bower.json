@@ -25,6 +25,9 @@
     "underscore": {
       "js": "**/*.js"
     },
+    "underscore.string": {
+      "js": "**/*.js"
+    },
     "gumby": {
       "css": "**/*.css",
       "js": "**/*.js",
@@ -38,11 +41,16 @@
         "**/*.ttf",
         "**/*.woff"
       ]
+    },
+    "gumby-parallax": {
+      "js": "**/*.js"
     }
   },
   "dependencies": {
     "jquery": "1.11.1",
     "underscore": "~1.6.0",
-    "gumby": "~2.6.3"
+    "underscore.string": "https://github.com/epeli/underscore.string.git",
+    "gumby": "~2.6.3",
+    "gumby-parallax": "~1.2.0"
   }
 }

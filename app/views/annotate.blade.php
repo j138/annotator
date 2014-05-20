@@ -1,30 +1,14 @@
 @extends('layout/master')
 
 @section('script')
+<script type="text/javascript" src="lib/gumby-parallax/js/gumby.parallax.js"></script>
+<script type="text/javascript" src="js/annotate_common.js"></script>
 <link rel="stylesheet" type="text/css" href="crop/crop.css" />
 @stop
 
 @section('content')
-ねこねこ<br />
-画像を表示し、囲んだ領域をうにょうにょで表示するためのデモ
-<div class="crop-holder">
-	<img class="target-img" src="crop/cat01.jpg" />
+<h1>アノテーションツールつくるよ</h1>
+<p>画像を表示し、囲んだ領域をうにょうにょで表示するためのデモ</p>
 
-	<!-- 囲みたい領域をwidth, heightで指定 -->
-	<div class="crop-wrapper" style="left:40px;top:20px; width:140px; height:130px">
-		<div class="crop-vline"></div>
-		<div class="crop-vline right"></div>
-		<div class="crop-hline"></div>
-		<div class="crop-hline bottom"></div>
-	</div>
-
-	<!-- 2個めも可能 -->
-	<div class="crop-wrapper" style="left:150px;top:120px; width:80px; height:80px">
-		<div class="crop-vline"></div>
-		<div class="crop-vline right"></div>
-		<div class="crop-hline"></div>
-		<div class="crop-hline bottom"></div>
-	</div>
-</div>
-
+<div class="crop-holder"></div>
 @stop
