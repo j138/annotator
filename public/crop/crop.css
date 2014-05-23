@@ -1,7 +1,6 @@
 body {
     background-color: #EEEEEE;
 }
-
 .canvas {
     position: fixed;
     top: 50%;
@@ -30,6 +29,7 @@ body {
 }
 .crop-wrapper {
     position: absolute;
+    pointer-events:none;
 }
 .crop-vline, .crop-hline {
     background: url("crop.gif") repeat scroll 0 0 #FFFFFF;
