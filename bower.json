@@ -56,8 +56,8 @@
     },
     "imgareaselect": {
       "js": "**/*.js",
-      "css": "**/*.css",
-      "img": [
+      "css": [
+        "**/*.css",
         "**/*.gif"
       ]
     }
