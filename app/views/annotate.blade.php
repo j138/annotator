@@ -15,8 +15,8 @@
 <div class="crop-holder"></div>
 @stop
 
-@section('matrix_table')
-<table id="matrix_table" class="striped">
+@section('scrap_table')
+<table id="scrap_table" class="striped">
 	<thead>
 		<tr>
 			<th>X</th>
@@ -29,4 +29,7 @@
 	<tbody>
 	</tbody>
 </table>
+<div id="save-scraps" class="medium secondary btn">
+	<a href="#">Save</a>
+</div>
 @stop

@@ -38,7 +38,7 @@
 			@yield('content')
 		</div>
 		<div class="three columns">
-			@yield('matrix_table')
+			@yield('scrap_table')
 		</div>
 	</div>
 </body>

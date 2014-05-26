@@ -1,24 +1,25 @@
 $(document).ready(function(){
 
   // 囲んだデータ
-  crop_data = [];
+  scraps = [];
+  img_data = null;
 
   // ------------------
   // controller
   // ------------------
   function init() {
-    var img_data = get_img();
+    img_data = get_img();
 
     // レイアウト初期化
     $('.crop-holder img').remove();
     $('.crop-holder div').remove();
 
     // 画像配置
-    $('.crop-holder').append('<img id="target-img" src="' + img_data['img'] + '" />');
+    $('.crop-holder').append('<img id="target-img" src="' + img_data.img + '" />');
 
     // データ初期化
-    _.map(img_data['crop'], function(map) {
-      crop_data.push(map);
+    _.map(img_data.crop, function(map) {
+      scraps.push(map);
     });
 
     // 囲む座標初期化
@@ -26,10 +27,10 @@ $(document).ready(function(){
   }
 
 
-  // crop_dataが変更されたとき実行
+  // scrapsが変更されたとき実行
   function cropper_refresh() {
     console.log('cropper_refresh');
-    update_matrix_table();
+    update_scrap_table();
     update_crop_sqrt();
   }
 
@@ -40,14 +41,14 @@ $(document).ready(function(){
     console.log(selection);
 
     // 小さいと除外
-    if(selection['width'] < 40 || selection['height'] < 40) return ;
+    if(selection.width < 40 || selection.height < 40) return ;
 
     // 蓄積していく
-    crop_data.push({
-      'left'   : selection['x1'],
-      'top'    : selection['y1'],
-      'width'  : selection['width'],
-      'height' : selection['height']
+    scraps.push({
+      'left'   : selection.x1,
+      'top'    : selection.y1,
+      'width'  : selection.width,
+      'height' : selection.height
     });
 
     // 再描画
@@ -65,7 +66,7 @@ $(document).ready(function(){
   // ------------------
   // TODO: webからJSONで受け取る
   function get_img() {
-    img_data = {
+    var img_info = {
       'img' : 'crop/cat01.jpg',
       // 'img' : 'http://thecatapi.com/api/images/get?format=src&type=gif',
       // 'img' : 'http://thecatapi.com/api/images/get?format=src&type=jpg',
@@ -84,7 +85,7 @@ $(document).ready(function(){
       //   },
       // }
     };
-    return img_data;
+    return img_info;
   }
 
 
@@ -92,13 +93,13 @@ $(document).ready(function(){
   // worker
   // ------------------
   // データテーブルに反映
-  function update_matrix_table() {
-    var target_tbody = $('#matrix_table tbody');
+  function update_scrap_table() {
+    var target_tbody = $('#scrap_table tbody');
     target_tbody.empty();
 
     var td = [];
 
-    _.map(crop_data, function(map, key) {
+    _.map(scraps, function(map, key) {
       console.log(map);
       td.push(
         _.sprintf(
@@ -109,10 +110,10 @@ $(document).ready(function(){
           + '<td>%d</td>'
           + '<td><div class="medium danger btn medium remove-sqrt-btn" val="%s"><a href="#"><i class="icon-cancel-circled"></i></a></div></td>'
           + '<tr>',
-          map['left'],
-          map['top'],
-          map['width'],
-          map['height'],
+          map.left,
+          map.top,
+          map.width,
+          map.height,
           key
         )
       );
@@ -124,21 +125,48 @@ $(document).ready(function(){
     $('.remove-sqrt-btn').on("click", function(){
       console.log($(this).attr('val'));
       var key = $(this).attr('val');
-      remove_crop(key);
+      remove_scrap(key);
     });
 
   }
 
-  function remove_crop(key) {
-      delete crop_data[key];
+
+  function remove_scrap(key) {
+      delete scraps[key];
       cropper_refresh();
   }
-  
+
+
+  // save
+  $('#save-scraps').on("click", function(){
+    params = {
+      'img': img_data.img,
+      'scraps': scraps,
+    };
+
+    console.log(params);
+
+    var ret = $.ajax({
+      type:"post",
+      url:'/annotate/save',
+      data:params,
+      async:true,
+      datatype:'json',
+      success: function(res) {
+        console.log(res);
+        // TODO: セーブしたという、アラートを出す
+      }
+    }).done(function(html) {
+      return true;
+    });
+
+  });
+
 
   // 画像の囲み反映
   function update_crop_sqrt() {
     $('.crop-holder div').remove();
-    _.map(crop_data, function(map, key) {
+    _.map(scraps, function(map, key) {
       $('.crop-holder').append(
         _.sprintf(
           '<div class="crop-wrapper" style="left:%(left)spx;top:%(top)spx; width:%(width)spx; height:%(height)spx">'
@@ -164,7 +192,8 @@ $(document).ready(function(){
   // TODO: init_cropperに含めるか要調整
   $('img#target-img').imgAreaSelect({
     handles: true,
-    onSelectEnd: croped
+    onSelectEnd: croped,
+    autoHide:true
   });
 });
 
