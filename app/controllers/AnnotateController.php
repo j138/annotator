@@ -24,12 +24,11 @@ class AnnotateController extends BaseController {
 		$img = Input::get('img');
 		$crops = Input::get('scraps');
 
-		var_dump($img);
-		var_dump($crops);
-		exit;
+		$annotation = Annotation::firstOrNew(array('img' => $img));
+		$annotation->points = json_encode($crops);
 
+		$ret = $annotation->save();
 
-		return json_encode($_POST);
-		// return 'saveeeeddd';
+		return (int)$ret;
 	}
 }

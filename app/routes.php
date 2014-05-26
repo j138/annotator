@@ -15,10 +15,8 @@ Route::get('/', function()
 {
 	// ファイルロードしてjpgを選別し、ファイルサイズとか
 	return View::make('annotate');
-	// return View::make('annotate')->with('any', $any);
 });
 
-Route::get('get_img', function()
-{
-	return json_encode();
-});
+// 画像の情報を保存するAPI
+Route::controller('/annotate', 'annotateController');
+
