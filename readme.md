@@ -27,10 +27,6 @@
   - [{"left":"28","top":"14","width":"156","height":"122"}]
 ```
 
-TODO
-----
-- annotation.txtを吐き出す処理
-
 
 開発環境
 ---
@@ -55,3 +51,9 @@ sqlite生成
 
 bower.js読み込んで、public/lib/にjqueryなどのライブラリばら撒く
 ```grunt```
+
+
+TODO
+----
+- annotation.txtを吐き出す処理
+
