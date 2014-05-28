@@ -8,7 +8,10 @@ $(document).ready(function(){
   // controller
   // ------------------
   function init() {
+    scraps = [];
     img_data = get_img();
+
+    if (img_data == false) return false;
 
     // レイアウト初期化
     $('.crop-holder img').remove();
@@ -24,6 +27,16 @@ $(document).ready(function(){
 
     // 囲む座標初期化
     cropper_refresh();
+
+    // imgareaselect初期化
+    // TODO: init_cropperに含めるか要調整
+    $('img#target-img').imgAreaSelect({
+      handles: true,
+      onSelectEnd: croped,
+      autoHide:true
+    });
+
+    return true;
   }
 
 
@@ -37,9 +50,6 @@ $(document).ready(function(){
 
   // 囲んだとき
   function croped(img, selection) {
-    console.log('selection:');
-    console.log(selection);
-
     // 小さいと除外
     if(selection.width < 40 || selection.height < 40) return ;
 
@@ -56,35 +66,25 @@ $(document).ready(function(){
   }
 
 
-  // TODO: 
-  function save_img_info() {
-  }
-
-
   // ------------------
   // getter / setter
   // ------------------
   // TODO: webからJSONで受け取る
   function get_img() {
-    var img_info = {
-      'img' : 'crop/cat01.jpg',
-      // 'img' : 'http://thecatapi.com/api/images/get?format=src&type=gif',
-      // 'img' : 'http://thecatapi.com/api/images/get?format=src&type=jpg',
-      // 'crop': {
-      //   0: {
-      //     'left':40,
-      //     'top':20,
-      //     'width':140,
-      //     'height':130,
-      //   },
-      //   1: {
-      //     'left':150,
-      //     'top':120,
-      //     'width':80,
-      //     'height':80,
-      //   },
-      // }
-    };
+    var img_info = null;
+
+    var ret = $.ajax({
+      type:"get",
+      url:'/annotate/img',
+      async:false,
+      datatype:'json',
+      success: function(res) {
+        img_info = JSON.parse(res);
+        if (img_info.length == 0) img_info = false;
+      }
+    }).done(function(html) {
+    });
+
     return img_info;
   }
 
@@ -100,7 +100,6 @@ $(document).ready(function(){
     var td = [];
 
     _.map(scraps, function(map, key) {
-      console.log(map);
       td.push(
         _.sprintf(
           '<tr>'
@@ -123,7 +122,6 @@ $(document).ready(function(){
 
     // 動的要素追加後、イベント埋め込み
     $('.remove-sqrt-btn').on("click", function(){
-      console.log($(this).attr('val'));
       var key = $(this).attr('val');
       remove_scrap(key);
     });
@@ -139,28 +137,45 @@ $(document).ready(function(){
 
   // save
   $('#save-scraps').on("click", function(){
-    params = {
+    var params = {
       'img': img_data.img,
-      'scraps': scraps,
+      'scraps': scraps
     };
 
-    console.log(params);
+    connect_action(params, '/annotate/save');
+    init();
+  });
+
+  // remove
+  $('#remove-scraps').on("click", function(){
+    var params = {
+      'img': img_data.img
+    };
+
+    connect_action(params, '/annotate/remove');
+    init();
+  });
+
+
+  function connect_action(params, url) {
 
     var ret = $.ajax({
       type:"post",
-      url:'/annotate/save',
+      url:url,
       data:params,
-      async:true,
+      async:false,
       datatype:'json',
       success: function(res) {
-        console.log(res);
-        // TODO: セーブしたという、アラートを出す
+        // console.log(res);
       }
     }).done(function(html) {
+      if (init() != true) {
+        finished_task();
+      }
+
       return true;
     });
-
-  });
+  }
 
 
   // 画像の囲み反映
@@ -182,18 +197,17 @@ $(document).ready(function(){
   }
 
 
+  function finished_task() {
+    $('#alert').fadeIn(1000).delay(3000).fadeOut(2000);
+    $('.disp-data-area').fadeOut(2000);
+  }
+
   // init underscore.string
   _.mixin(_.str.exports());
 
   // 画像の取得とデータテーブルの吐き出し
-  init();
-
-  // imgareaselect初期化
-  // TODO: init_cropperに含めるか要調整
-  $('img#target-img').imgAreaSelect({
-    handles: true,
-    onSelectEnd: croped,
-    autoHide:true
-  });
+  if (init() != true) {
+    finished_task();
+  }
 });
 

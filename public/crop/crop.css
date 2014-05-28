@@ -51,3 +51,8 @@ body {
 .crop-hline.bottom {
     bottom: 0;
 }
+#alert {
+	display: none;
+	width: 100%;
+	position: absolute;
+}
