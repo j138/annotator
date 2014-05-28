@@ -57,7 +57,6 @@
     "jquery": "2.1.1",
     "underscore": "~1.6.0",
     "underscore.string": "https://github.com/epeli/underscore.string.git",
-    "jquery.mb.gallery": "https://github.com/pupunzi/jquery.mb.gallery.git",
     "gumby": "~2.6.3",
     "gumby-parallax": "~1.2.0",
     "jcrop": "~0.9.12",
