@@ -1,0 +1,14 @@
+{
+  "name": "jquery.mb.gallery",
+  "homepage": "https://github.com/pupunzi/jquery.mb.gallery",
+  "version": "2.3.0",
+  "_release": "2.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.3.0",
+    "commit": "99181a6b555dffd64fce105d9b3c1755941f338a"
+  },
+  "_source": "https://github.com/pupunzi/jquery.mb.gallery.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/pupunzi/jquery.mb.gallery.git"
+}
