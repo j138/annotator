@@ -10,26 +10,42 @@
 <link rel="stylesheet" type="text/css" href="lib/imgareaselect/css/imgareaselect-default.css" />
 @stop
 
+
 @section('content')
-<h2>ↀωↀ  &lt; 特定部位を囲んでね！</h2>
+<h2>ↀωↀ  &lt; Mark it alrignt!</h2>
 <div class="crop-holder"></div>
 @stop
 
+
 @section('scrap_table')
-<table id="scrap_table" class="striped">
-	<thead>
-		<tr>
-			<th>X</th>
-			<th>Y</th>
-			<th>W</th>
-			<th>H</th>
-			<th>(ΦωΦ)</th>
-		</tr>
-	</thead>
-	<tbody>
-	</tbody>
-</table>
-<div id="save-scraps" class="medium secondary btn">
-	<a href="#">Save</a>
+<div class="disp-data-area">
+	<table id="scrap_table" class="striped">
+		<thead>
+			<tr>
+				<th>X</th>
+				<th>Y</th>
+				<th>W</th>
+				<th>H</th>
+				<th>(ΦωΦ)</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+	<div id="save-scraps" class="medium secondary btn">
+		<a href="#">Mark It!</a>
+	</div>
+	<div id="remove-scraps" class="medium danger btn">
+		<a href="#">Destroy</a>
+	</div>
 </div>
+@stop
+
+@section('info-alert')
+	<li id="alert" class="success alert">すべてのチェックが完了しました。</li>
+@stop
+
+
+@section('completed')
+
 @stop
