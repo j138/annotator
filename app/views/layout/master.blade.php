@@ -15,7 +15,6 @@
 </head>
 <body>
 	<div class="navbar metro" id="nav1">
-		<!-- Toggle for mobile navigation, targeting the <ul> -->
 		<a class="toggle" gumby-trigger="#nav1 > ul" href="#"><i class="icon-menu"></i></a>
 		<h1 class="four columns logo">
 			<a href="#">(ΦωΦ)</a>
@@ -37,9 +36,14 @@
 	<div class="row">
 		<div class="nine columns">
 			@yield('content')
+			@yield('completed')
 		</div>
 		<div class="three columns">
 			@yield('scrap_table')
+		</div>
+	</div>
+	<div class="row">
+		<div class="twelve columns">
 		</div>
 	</div>
 </body>

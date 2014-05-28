@@ -56,3 +56,8 @@ body {
 	width: 100%;
 	position: absolute;
 }
+#completed-announce {
+	display: none;
+	width: 100%;
+}
+

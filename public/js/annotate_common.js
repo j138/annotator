@@ -198,8 +198,14 @@ $(document).ready(function(){
 
 
   function finished_task() {
-    $('#alert').fadeIn(1000).delay(3000).fadeOut(2000);
-    $('.disp-data-area').fadeOut(2000);
+    $('#alert').fadeIn(500).delay(3000).fadeOut(2000);
+    $('.disp-data-area').fadeOut(1000);
+    $('.crop-holder').fadeOut(1000);
+
+    $('#completed-announce').delay('1500').fadeIn(1000);
+    $('#title-msg').fadeOut(0).delay(1000).fadeIn(1000);
+    $('#title-msg').text('completed!');
+
   }
 
   // init underscore.string

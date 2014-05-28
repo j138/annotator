@@ -12,7 +12,7 @@
 
 
 @section('content')
-<h2>ↀωↀ  &lt; Mark it alrignt!</h2>
+<h2 id="title">ↀωↀ  &lt; <span id="title-msg">Mark it alrignt!</span></h2>
 <div class="crop-holder"></div>
 @stop
 
@@ -47,5 +47,8 @@
 
 
 @section('completed')
-
+<div id="completed-announce">
+	<!-- <img src="http://thecatapi.com/api/images/get?format=src&#38;type=jpg"> -->
+	<img src="./crop/completed.jpg">
+</div>
 @stop
